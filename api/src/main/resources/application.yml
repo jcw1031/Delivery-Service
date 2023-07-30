@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/delivery?useSSL=false&useUnicode=true&allowPublicKeyRetrieval=true
-    username: root
-    password: root1234!!
+    username: jcw
+    password: 1234
   jpa:
     show-sql: true
     properties:
