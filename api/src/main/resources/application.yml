@@ -6,8 +6,8 @@ spring:
   jpa:
     show-sql: true
     properties:
-      format_sql: true
-      highlight_sql: true
-      dialect: org.hibernate.dialect.MySQL8Dialect
-    hibernate:
-      ddl-auto: validate
+      hibernate:
+        format_sql: true
+        highlight_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        ddl-auto: validate
