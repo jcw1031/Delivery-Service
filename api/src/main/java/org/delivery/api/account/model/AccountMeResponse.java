@@ -10,8 +10,6 @@ import java.time.LocalDateTime;
 public class AccountMeResponse {
 
     private String email;
-
     private String name;
-
     private LocalDateTime registeredAt;
 }
