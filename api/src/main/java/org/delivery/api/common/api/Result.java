@@ -4,7 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.http.HttpStatus;
+import org.delivery.api.common.error.ErrorCode;
+import org.delivery.api.common.error.ErrorCodeInterface;
 
 @Data
 @NoArgsConstructor
@@ -18,9 +19,33 @@ public class Result {
 
     public static Result OK() {
         return Result.builder()
-                .resultCode(HttpStatus.OK.value())
-                .resultMessage("OK")
+                .resultCode(ErrorCode.OK.getErrorCode())
+                .resultMessage(ErrorCode.OK.getDescription())
                 .resultDescription("성공")
+                .build();
+    }
+
+    public static Result ERROR(ErrorCodeInterface errorCode) {
+        return Result.builder()
+                .resultCode(errorCode.getErrorCode())
+                .resultMessage(errorCode.getDescription())
+                .resultDescription("오류")
+                .build();
+    }
+
+    public static Result ERROR(ErrorCodeInterface errorCode, Throwable throwable) {
+        return Result.builder()
+                .resultCode(errorCode.getErrorCode())
+                .resultMessage(errorCode.getDescription())
+                .resultDescription(throwable.getLocalizedMessage())
+                .build();
+    }
+
+    public static Result ERROR(ErrorCodeInterface errorCode, String description) {
+        return Result.builder()
+                .resultCode(errorCode.getErrorCode())
+                .resultMessage(errorCode.getDescription())
+                .resultDescription(description)
                 .build();
     }
 }
