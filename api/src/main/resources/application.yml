@@ -12,6 +12,11 @@ spring:
         dialect: org.hibernate.dialect.MySQL8Dialect
     hibernate:
       ddl-auto: validate
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin1234!!
 
 token:
   secret:
