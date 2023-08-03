@@ -53,6 +53,6 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
             return true;
         }
 
-        throw new ApiException(ErrorCode.BAD_REQUEST, "인증실패");
+        throw new ApiException(ErrorCode.BAD_REQUEST, "인증 실패");
     }
 }
