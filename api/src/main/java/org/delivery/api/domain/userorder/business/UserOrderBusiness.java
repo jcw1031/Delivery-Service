@@ -11,6 +11,7 @@ import org.delivery.api.domain.userorder.controller.model.UserOrderDetailRespons
 import org.delivery.api.domain.userorder.controller.model.UserOrderRequest;
 import org.delivery.api.domain.userorder.controller.model.UserOrderResponse;
 import org.delivery.api.domain.userorder.converter.UserOrderConverter;
+import org.delivery.api.domain.userorder.producer.UserOrderProducer;
 import org.delivery.api.domain.userorder.service.UserOrderService;
 import org.delivery.api.domain.userordermenu.converter.UserOrderMenuConverter;
 import org.delivery.api.domain.userordermenu.service.UserOrderMenuService;
@@ -34,6 +35,7 @@ public class UserOrderBusiness {
     private final UserOrderMenuService userOrderMenuService;
     private final StoreService storeService;
     private final StoreConverter storeConverter;
+    private final UserOrderProducer userOrderProducer;
 
     public UserOrderResponse userOrder(User user, UserOrderRequest body) {
         List<StoreMenuEntity> storeMenuEntityList = body.getStoreMenuIdList().stream()
@@ -45,6 +47,9 @@ public class UserOrderBusiness {
         storeMenuEntityList.stream()
                 .map(it -> userOrderMenuConverter.toEntity(savedUserOrderEntity, it))
                 .forEach(userOrderMenuService::order);
+        // 비동기 주문 메시지 전송
+        userOrderProducer.sendOrder(savedUserOrderEntity);
+
         return userOrderConverter.toResponse(savedUserOrderEntity);
     }
 

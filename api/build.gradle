@@ -36,6 +36,7 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok'
 
     implementation project(':db')
+    implementation project(':common')
 }
 
 test {
