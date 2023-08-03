@@ -30,5 +30,4 @@ public class UserOrderResponse {
     private LocalDateTime deliveryStartedAt;
 
     private LocalDateTime receivedAt;
-
 }
